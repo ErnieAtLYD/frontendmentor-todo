@@ -7,7 +7,8 @@ const ListItemWrapper = styled.li`
   align-items: center;
   display: flex;
   height: 4.0625rem;
-  border-bottom: 1px solid #e3e4f1;
+  background-color: ${({ theme }) => theme.listItemBgColor};
+  border-bottom: 1px solid ${({ theme }) => theme.listItemBorderColor};
 `;
 
 export default ListItemWrapper;

@@ -13,8 +13,7 @@ interface ListSectionProps {
 }
 
 const ListSectionWrapper = styled.article`
-  background: #fff;
-  box-shadow: 0px 35px 50px -15px rgba(194, 195, 214, 0.5);
+  box-shadow: 0px 35px 50px -15px ${({ theme }) => theme.listShadow};
   border-radius: 5px;
 `;
 

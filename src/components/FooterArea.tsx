@@ -16,11 +16,13 @@ const List = styled.ul`
   justify-content: space-between;
   align-items: center;
   height: 4.0625rem;
+  border-radius: 0 0 5px 5px;
+  background-color: ${({ theme }) => theme.listItemBgColor};
 `;
 
 const ItemsLeft = styled.li`
   display: inline-block;
-  color: #9495a5;
+  color: ${({ theme }) => theme.placeholderColor};
   font-size: 0.875rem;
   line-height: 0.875rem;
   letter-spacing: -0.194444px;
@@ -49,7 +51,7 @@ const FilterButton = styled.button`
 
 const ClearButton = styled(FilterButton)`
   font-weight: 400;
-  color: #9495a5;
+  color: ${({ theme }) => theme.placeholderColor};
   margin-right: 1.5625rem;
 `;
 

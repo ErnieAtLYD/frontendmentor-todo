@@ -1,17 +1,10 @@
 import React, { useState } from 'react';
 import Header from './components/Header';
 import FormSection from './components/FormSection';
-import './App.css';
-import bgDesktopLight from './images/bg-desktop-light.jpg';
-import styled from 'styled-components';
+import styled, { ThemeProvider } from 'styled-components';
+import { darkTheme, lightTheme, GlobalStyles } from './helpers/themes';
 import { useTodoList } from './hooks/useTodoList';
 import ListSection from './components/ListSection';
-
-const AppWrapper = styled.div`
-  background-image: url(${bgDesktopLight});
-  background-position: top center;
-  background-repeat: no-repeat;
-`;
 
 const ContainerWrapper = styled.main`
   max-width: 33.75rem;
@@ -29,8 +22,13 @@ const FootnoteWrapper = styled.footer`
 `;
 
 function App() {
+  const [theme, setTheme] = useState('light');
   const [filter, setFilter] = useState('all');
   const [todoBox, setTodoBox] = useState<string>('');
+
+  const switchTheme = () => {
+    theme === 'light' ? setTheme('dark') : setTheme('light');
+  };
 
   // custom hooks
   const { items, addItem, deleteItem, removeCompleted, toggleCheckbox } =
@@ -49,9 +47,10 @@ function App() {
   };
 
   return (
-    <AppWrapper>
+    <ThemeProvider theme={theme === 'light' ? lightTheme : darkTheme}>
+      <GlobalStyles />
       <ContainerWrapper>
-        <Header />
+        <Header switchTheme={switchTheme} />
         <FormSection
           handleSubmit={handleSubmit}
           handleChange={handleChange}
@@ -67,7 +66,7 @@ function App() {
         />
         <FootnoteWrapper>Drag and drop to reorder list</FootnoteWrapper>
       </ContainerWrapper>
-    </AppWrapper>
+    </ThemeProvider>
   );
 }
 

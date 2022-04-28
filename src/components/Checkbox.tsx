@@ -26,15 +26,17 @@ const HiddenCheckbox = styled.input.attrs({ type: 'checkbox' })`
 
 // prettier-ignore
 const CheckboxSVG = styled.svg<{ active: boolean }>`
-  background: #fff;
-  border: 2px #ddd solid;
+  background-color: ${({ theme }) => theme.listItemBgColor};
+  border: 2px solid ${({ theme }) => theme.listItemBorderColor};
   border-radius: 50%;
   display: inline-block;
   height: 1.5rem;
   margin-right: 24px;
   width: 1.5rem;
 
-  ${({ active }) => active && `
+  ${({ active }) =>
+    active &&
+    `
     border: 2px transparent double;
     background: linear-gradient(135deg, hsl(192, 100%, 67%), hsl(280, 87%, 65%));
     background-origin: border-box;

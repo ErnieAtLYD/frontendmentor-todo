@@ -18,7 +18,6 @@ const HiddenButton = styled.button.attrs({ type: 'submit' })`
 `;
 
 const Form = styled.form`
-  background: #fff;
   height: 4rem;
   box-shadow: 0px 35px 50px -15px rgba(194, 195, 214, 0.5);
   border-radius: 5px;
@@ -26,7 +25,7 @@ const Form = styled.form`
 
   &:before {
     content: '';
-    border: 2px #ddd solid;
+    border: 2px solid ${({ theme }) => theme.listItemBorderColor};
     border-radius: 50%;
     width: 1.5rem;
     height: 1.5rem;
@@ -38,6 +37,7 @@ const Form = styled.form`
 const TextBoxWrapper = styled.div`
   display: flex;
   height: 100%;
+  border-radius: 5px;
 `;
 
 const TextBox = styled.input.attrs({
@@ -45,9 +45,11 @@ const TextBox = styled.input.attrs({
   placeholder: 'Create a new todo...',
   name: 'todo',
 })`
-  color: #393a4b;
+  color: ${({ theme }) => theme.listItemColor};
   height: 100%;
   border: 0;
+  border-radius: 5px;
+  background-color: ${({ theme }) => theme.listItemBgColor};
   padding: 0;
   font-size: 1.125rem;
   line-height: 1.125rem;

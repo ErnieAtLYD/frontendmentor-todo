@@ -4,6 +4,8 @@ import Checkbox from './Checkbox';
 import DeleteIcon from './DeleteIcon';
 import ListItemWrapper from './ListItemWrapper';
 
+let strikeThruColor: string;
+
 interface ListItemProps {
   item: IListItem;
   toggleCheckbox: (id: string) => void;
@@ -12,17 +14,22 @@ interface ListItemProps {
 
 // prettier-ignore
 const Label = styled.label<{ completed: boolean }>`
-  color: #494c6b;
+  color: ${({ theme }) => {
+    strikeThruColor = theme.strikeThruColor;
+    return theme.listItemColor
+  }};
   font-size: 1.125rem;
   font-weight: 400;
   line-height: 1.125rem;
   letter-spacing: -0.25px;
-  margin-left: 24px;
+  margin-left: 1.5rem;
   flex-grow: 1;
 
-  ${({ completed }) => completed &&`
+  ${({ completed }) =>
+    completed &&
+    `
     text-decoration: line-through;
-    color: #D1D2DA;
+    color: ${strikeThruColor}};
   `}
 `;
 
