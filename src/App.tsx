@@ -7,8 +7,12 @@ import { useTodoList } from './hooks/useTodoList';
 import ListSection from './components/ListSection';
 
 const ContainerWrapper = styled.main`
-  max-width: 33.75rem;
+  max-width: 20.4375rem;
   margin: 0 auto;
+
+  @media (min-width: 60rem) {
+    max-width: 33.75rem;
+  }
 `;
 
 const FootnoteWrapper = styled.footer`
@@ -18,7 +22,7 @@ const FootnoteWrapper = styled.footer`
   text-align: center;
   letter-spacing: -0.194444px;
   margin-top: 3.0625rem;
-  color: #9495a5;
+  color: ${({ theme }) => theme.deleteIconColor};
 `;
 
 function App() {

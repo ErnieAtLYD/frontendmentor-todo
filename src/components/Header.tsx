@@ -13,6 +13,9 @@ const BrandTitle = styled.h1`
   font-weight: 700;
   letter-spacing: 0.9375rem;
   color: #fff;
+
+  @media (min-width: 60rem) {
+  }
 `;
 
 const ButtonWrapper = styled.button`
