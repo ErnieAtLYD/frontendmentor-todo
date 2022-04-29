@@ -15,7 +15,7 @@ export const darkTheme: DefaultTheme = {
   listItemColor: '#C8CBE7',
   strikeThruColor: '#4D5067',
   placeholderColor: '#767992',
-  deleteIconColor: '#5B5E7E', // FIXME
+  deleteIconColor: '#5B5E7E',
   listShadow: 'rgba(0, 0, 0, 0.5)',
 };
 
@@ -28,7 +28,7 @@ export const lightTheme: DefaultTheme = {
   listItemColor: '#494c6b',
   strikeThruColor: '#d1d2da',
   placeholderColor: '#9495a5',
-  deleteIconColor: '#5B5E7E', // FIXME
+  deleteIconColor: '#9495a5',
   listShadow: 'rgba(194, 195, 214, 0.5)',
 };
 
