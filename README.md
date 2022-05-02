@@ -2,7 +2,7 @@ Things I'm trying
 
 - TypeScript
 - Custom Hooks
-- Styled Components including how to refer to other components and the Theme Provider for dark mode
+- Styled Components including how to refer to other components and the Theme Provider for dark mode, using CSS to resize SVGs
 - Accessibility (centered around checkboxes)
 - SVGs
 

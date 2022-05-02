@@ -1,6 +1,8 @@
 import { createGlobalStyle, DefaultTheme } from 'styled-components';
 import bgDesktopLight from '../images/bg-desktop-light.jpg';
+import bgMobileLight from '../images/bg-mobile-light.jpg';
 import bgDesktopDark from '../images/bg-desktop-dark.jpg';
+import bgMobileDark from '../images/bg-mobile-dark.jpg';
 import { ReactComponent as IconMoon } from '../images/icon-moon.svg';
 import { ReactComponent as IconSun } from '../images/icon-sun.svg';
 
@@ -9,6 +11,7 @@ import { ReactComponent as IconSun } from '../images/icon-sun.svg';
 export const darkTheme: DefaultTheme = {
   bgColor: '#171823',
   bgDesktop: `url(${bgDesktopDark})`,
+  bgMobile: `url(${bgMobileDark})`,
   darkModeIcon: <IconSun />,
   listItemBgColor: '#25273D',
   listItemBorderColor: '#393A4B',
@@ -22,6 +25,7 @@ export const darkTheme: DefaultTheme = {
 export const lightTheme: DefaultTheme = {
   bgColor: '#fafafa',
   bgDesktop: `url(${bgDesktopLight})`,
+  bgMobile: `url(${bgMobileLight})`,
   darkModeIcon: <IconMoon />,
   listItemBgColor: '#fff',
   listItemBorderColor: '#e3e4f1',
@@ -36,9 +40,5 @@ export const GlobalStyles = createGlobalStyle`
   body {
     font-family: 'Josefin Sans', sans-serif;
     background-color:${({ theme }) => theme.bgColor};
-
-    background-image: ${({ theme }) => theme.bgDesktop};
-    background-position: top center;
-    background-repeat: no-repeat;
   }
 `;

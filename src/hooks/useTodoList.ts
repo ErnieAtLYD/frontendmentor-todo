@@ -11,12 +11,9 @@ export const useTodoList = () => {
 
   const toggleCheckbox = (id: string) => {
     setItems(
-      items.map((item: IListItem) => {
-        if (item.id === id) {
-          return { ...item, completed: !item.completed };
-        }
-        return item;
-      })
+      items.map((item: IListItem) =>
+        item.id === id ? { ...item, completed: !item.completed } : item
+      )
     );
   };
   const deleteItem = (id: string) => {

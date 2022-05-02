@@ -6,11 +6,21 @@ import { darkTheme, lightTheme, GlobalStyles } from './helpers/themes';
 import { useTodoList } from './hooks/useTodoList';
 import ListSection from './components/ListSection';
 
+const BodyWrapper = styled.div`
+  background-image: ${({ theme }) => theme.bgMobile};
+  background-repeat: no-repeat;
+  background-position: top center;  
+
+  @media (min-width: 23.5rem) {
+    background-image: ${({ theme }) => theme.bgDesktop};
+  }  
+`;
+
 const ContainerWrapper = styled.main`
   max-width: 20.4375rem;
   margin: 0 auto;
 
-  @media (min-width: 60rem) {
+  @media (min-width: 23.5rem) {
     max-width: 33.75rem;
   }
 `;
@@ -53,6 +63,7 @@ function App() {
   return (
     <ThemeProvider theme={theme === 'light' ? lightTheme : darkTheme}>
       <GlobalStyles />
+      <BodyWrapper>
       <ContainerWrapper>
         <Header switchTheme={switchTheme} />
         <FormSection
@@ -70,6 +81,7 @@ function App() {
         />
         <FootnoteWrapper>Drag and drop to reorder list</FootnoteWrapper>
       </ContainerWrapper>
+      </BodyWrapper>
     </ThemeProvider>
   );
 }

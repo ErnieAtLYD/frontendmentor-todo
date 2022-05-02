@@ -11,11 +11,17 @@ const ButtonWrapper = styled.button`
   border: none;
   cursor: pointer;
   vertical-align: middle;
-  margin-right: 16px;
-  visibility: hidden;
+  margin-right: 1rem;
+  visibility: visible;
 
-  ${ListItemWrapper}:hover & {
-    visibility: visible;
+
+  @media (min-width: 23.5rem) {
+    visibility: hidden;    
+
+    ${ListItemWrapper}:hover & {
+      visibility: visible;
+    }
+  
   }
 `;
 

@@ -30,9 +30,9 @@ const CheckboxSVG = styled.svg<{ active: boolean }>`
   border: 2px solid ${({ theme }) => theme.listItemBorderColor};
   border-radius: 50%;
   display: inline-block;
-  height: 1.5rem;
-  margin-right: 24px;
-  width: 1.5rem;
+  height: 1.25rem;
+  margin-right: 1.25rem;
+  width: 1.25rem;
 
   ${({ active }) =>
     active &&
@@ -45,6 +45,12 @@ const CheckboxSVG = styled.svg<{ active: boolean }>`
 
   &:hover {
     border: 2px blue solid; // FIXME
+  }
+
+  @media (min-width: 23.5rem) {
+    height: 1.5rem;
+    margin-right: 1.5rem;
+    width: 1.5rem;
   }
 `;
 

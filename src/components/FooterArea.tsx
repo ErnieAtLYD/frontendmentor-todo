@@ -15,18 +15,34 @@ const List = styled.ul`
   vertical-align: middle;
   justify-content: space-between;
   align-items: center;
-  height: 4.0625rem;
+  height: 3.125rem;
   border-radius: 0 0 5px 5px;
   background-color: ${({ theme }) => theme.listItemBgColor};
+
+  @media (min-width: 23.5rem) {
+    height: 4.0625rem;
+  }  
 `;
 
 const ItemsLeft = styled.li`
   display: inline-block;
   color: ${({ theme }) => theme.placeholderColor};
-  font-size: 0.875rem;
-  line-height: 0.875rem;
+  font-size: 0.75rem;
+  line-height: 0.75rem;
   letter-spacing: -0.194444px;
   margin-left: 1.5625rem;
+
+  @media (min-width: 23.5rem) {
+    font-size: 0.875rem;
+    line-height: 0.875rem;
+  }
+`;
+
+const Filters = styled.li`
+  display: none;
+  @media (min-width: 23.5rem) {
+    display: block;
+  }
 `;
 
 const FilterButton = styled.button`
@@ -34,8 +50,8 @@ const FilterButton = styled.button`
   border: 0;
   padding: 0;
   margin: 0 0.5625rem;
-  font-size: 0.875rem;
-  line-height: 0.875rem;
+  font-size: 0.75rem;
+  line-height: 0.75rem;
   font-weight: 700;
   letter-spacing: -0.194444px;
   color: ${({ disabled }) => (disabled ? '#3A7CFD' : '#9495A5')};
@@ -47,12 +63,24 @@ const FilterButton = styled.button`
           color: #494c6b;
           cursor: pointer;
         }`}
+
+  @media (min-width: 23.5rem) {
+    font-size: 0.875rem;
+    line-height: 0.875rem;
+  }
 `;
 
 const ClearButton = styled(FilterButton)`
   font-weight: 400;
   color: ${({ theme }) => theme.placeholderColor};
   margin-right: 1.5625rem;
+  font-size: 0.75rem;
+  line-height: 0.75rem;
+
+  @media (min-width: 23.5rem) {
+    font-size: 0.875rem;
+    line-height: 0.875rem;
+  }
 `;
 
 const FooterArea = ({
@@ -70,7 +98,7 @@ const FooterArea = ({
     <footer>
       <List>
         <ItemsLeft>{activeItems()}</ItemsLeft>
-        <li>
+        <Filters>
           <FilterButton
             disabled={filter === 'all'}
             onClick={() => setFilter('all')}
@@ -89,7 +117,7 @@ const FooterArea = ({
           >
             Completed
           </FilterButton>
-        </li>
+        </Filters>
         <li>
           <ClearButton onClick={removeCompleted}>Clear Completed</ClearButton>
         </li>

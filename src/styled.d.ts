@@ -6,6 +6,7 @@ declare module 'styled-components' {
   export interface DefaultTheme {
     bgColor: string;
     bgDesktop: string;
+    bgMobile: string;
     darkModeIcon: React.ReactNode;
     listItemBgColor: string;
     listItemBorderColor: string;
