@@ -24,5 +24,13 @@ export const useTodoList = () => {
     setItems(items.filter((item: IListItem) => !item.completed));
   };
 
-  return { items, addItem, deleteItem, removeCompleted, toggleCheckbox };
+  // We now need setItems for ReactSortableHoc to work
+  return {
+    items,
+    addItem,
+    deleteItem,
+    removeCompleted,
+    toggleCheckbox,
+    setItems,
+  };
 };

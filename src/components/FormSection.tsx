@@ -1,9 +1,8 @@
+import { useState } from 'react';
 import styled from 'styled-components';
 
 interface IFormSectionProps {
-  handleChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
-  handleSubmit: (event: React.FormEvent<HTMLFormElement>) => void;
-  todoBox: string;
+  addItem: (todo: string) => void;
 }
 
 const HiddenButton = styled.button.attrs({ type: 'submit' })`
@@ -18,26 +17,26 @@ const HiddenButton = styled.button.attrs({ type: 'submit' })`
 `;
 
 const Form = styled.form`
-  height: 3rem;
-  box-shadow: 0px 35px 50px -15px rgba(194, 195, 214, 0.5);
   border-radius: 5px;
+  box-shadow: 0px 35px 50px -15px rgba(194, 195, 214, 0.5);
+  height: 3rem;
   margin-bottom: 1rem;
 
   &:before {
-    content: '';
     border: 2px solid ${({ theme }) => theme.listItemBorderColor};
     border-radius: 50%;
-    width: 1.25rem;
+    content: '';
     height: 1.25rem;
     margin: 0.75rem 1.25rem;
     position: absolute;
+    width: 1.25rem;
   }
 
   @media (min-width: 23.5rem) {
     height: 4rem;
     &:before {
       width: 1.5rem;
-      height: 1.5rem;      
+      height: 1.5rem;
       margin: 1rem 1.5rem;
     }
   }
@@ -54,17 +53,17 @@ const TextBox = styled.input.attrs({
   placeholder: 'Create a new todo...',
   name: 'todo',
 })`
-  color: ${({ theme }) => theme.listItemColor};
-  height: 100%;
+  background-color: ${({ theme }) => theme.listItemBgColor};
   border: 0;
   border-radius: 5px;
-  background-color: ${({ theme }) => theme.listItemBgColor};
-  padding: 0;
+  color: ${({ theme }) => theme.listItemColor};
   font-size: 0.75rem;
+  height: 100%;
   line-height: 0.75rem;
   letter-spacing: -0.17px;
-  width: calc(99% - 4rem);
+  padding: 0;
   padding-left: 4.375rem;
+  width: calc(99% - 4rem);
 
   ::-webkit-input-placeholder {
     color: #9495a5;
@@ -74,21 +73,30 @@ const TextBox = styled.input.attrs({
     font-size: 1.125rem;
     line-height: 1.125rem;
     letter-spacing: -0.25px;
-    padding-left: 4.375rem;
   }
 `;
 
-function FormSection({
-  handleChange,
-  handleSubmit,
-  todoBox,
-}: IFormSectionProps) {
+function FormSection({ addItem }: IFormSectionProps) {
+  const [todoBox, setTodoBox] = useState<string>('');
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    if (todoBox.trim()) {
+      addItem(todoBox);
+      setTodoBox('');
+    }
+  };
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setTodoBox(e.target.value);
+  };
+
   return (
     <Form onSubmit={handleSubmit}>
       <TextBoxWrapper>
-        <TextBox name='todo' value={todoBox} onChange={handleChange} />
+        <TextBox name="todo" value={todoBox} onChange={handleChange} />
       </TextBoxWrapper>
-      <HiddenButton aria-hidden='true'>Add</HiddenButton>
+      <HiddenButton>Add</HiddenButton>
     </Form>
   );
 }

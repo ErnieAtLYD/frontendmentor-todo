@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import List from './List';
 import FooterArea from './FooterArea';
 import { IListItem } from '../interfaces';
@@ -5,11 +6,10 @@ import styled from 'styled-components';
 
 interface ListSectionProps {
   items: IListItem[];
-  filter: string;
+  setItems: React.Dispatch<React.SetStateAction<IListItem[]>>;
   toggleCheckbox: (id: string) => void;
   deleteItem: (id: string) => void;
   removeCompleted: () => void;
-  setFilter: React.Dispatch<React.SetStateAction<string>>;
 }
 
 const ListSectionWrapper = styled.article`
@@ -19,17 +19,18 @@ const ListSectionWrapper = styled.article`
 
 const ListSection = ({
   items,
-  filter,
+  setItems,
   toggleCheckbox,
   deleteItem,
   removeCompleted,
-  setFilter,
 }: ListSectionProps) => {
+  const [filter, setFilter] = useState('all');
   return (
     <ListSectionWrapper>
       <List
         filter={filter}
         items={items}
+        setItems={setItems}
         toggleCheckbox={toggleCheckbox}
         deleteItem={deleteItem}
       />

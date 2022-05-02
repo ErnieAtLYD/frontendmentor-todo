@@ -9,11 +9,11 @@ import ListSection from './components/ListSection';
 const BodyWrapper = styled.div`
   background-image: ${({ theme }) => theme.bgMobile};
   background-repeat: no-repeat;
-  background-position: top center;  
+  background-position: top center;
 
   @media (min-width: 23.5rem) {
     background-image: ${({ theme }) => theme.bgDesktop};
-  }  
+  }
 `;
 
 const ContainerWrapper = styled.main`
@@ -26,61 +26,48 @@ const ContainerWrapper = styled.main`
 `;
 
 const FootnoteWrapper = styled.footer`
+  color: ${({ theme }) => theme.deleteIconColor};
   font-weight: 400;
   font-size: 0.875rem;
   line-height: 0.875rem;
-  text-align: center;
   letter-spacing: -0.194444px;
   margin-top: 3.0625rem;
-  color: ${({ theme }) => theme.deleteIconColor};
+  text-align: center;
 `;
 
 function App() {
   const [theme, setTheme] = useState('light');
-  const [filter, setFilter] = useState('all');
-  const [todoBox, setTodoBox] = useState<string>('');
 
   const switchTheme = () => {
     theme === 'light' ? setTheme('dark') : setTheme('light');
   };
 
   // custom hooks
-  const { items, addItem, deleteItem, removeCompleted, toggleCheckbox } =
-    useTodoList();
-
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    if (todoBox.trim()) {
-      addItem(todoBox);
-      setTodoBox('');
-    }
-  };
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setTodoBox(e.target.value);
-  };
+  const {
+    items,
+    addItem,
+    deleteItem,
+    removeCompleted,
+    toggleCheckbox,
+    setItems,
+  } = useTodoList();
 
   return (
     <ThemeProvider theme={theme === 'light' ? lightTheme : darkTheme}>
       <GlobalStyles />
       <BodyWrapper>
-      <ContainerWrapper>
-        <Header switchTheme={switchTheme} />
-        <FormSection
-          handleSubmit={handleSubmit}
-          handleChange={handleChange}
-          todoBox={todoBox}
-        />
-        <ListSection
-          items={items}
-          deleteItem={deleteItem}
-          toggleCheckbox={toggleCheckbox}
-          removeCompleted={removeCompleted}
-          filter={filter}
-          setFilter={setFilter}
-        />
-        <FootnoteWrapper>Drag and drop to reorder list</FootnoteWrapper>
-      </ContainerWrapper>
+        <ContainerWrapper>
+          <Header switchTheme={switchTheme} />
+          <FormSection addItem={addItem} />
+          <ListSection
+            items={items}
+            setItems={setItems}
+            deleteItem={deleteItem}
+            toggleCheckbox={toggleCheckbox}
+            removeCompleted={removeCompleted}
+          />
+          <FootnoteWrapper>Drag and drop to reorder list</FootnoteWrapper>
+        </ContainerWrapper>
       </BodyWrapper>
     </ThemeProvider>
   );

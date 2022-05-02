@@ -1,4 +1,7 @@
 import styled from 'styled-components';
+import { useSortable } from '@dnd-kit/sortable';
+import { CSS } from '@dnd-kit/utilities';
+
 import { IListItem } from '../interfaces/';
 import Checkbox from './Checkbox';
 import DeleteIcon from './DeleteIcon';
@@ -7,6 +10,7 @@ import ListItemWrapper from './ListItemWrapper';
 let strikeThruColor: string;
 
 interface ListItemProps {
+  id: string;
   item: IListItem;
   toggleCheckbox: (id: string) => void;
   deleteItem: (id: string) => void;
@@ -40,9 +44,19 @@ const Label = styled.label<{ completed: boolean }>`
   }
 `;
 
-function ListItem({ item, toggleCheckbox, deleteItem }: ListItemProps) {
+function ListItem({ id, item, toggleCheckbox, deleteItem }: ListItemProps) {
+  const { attributes, listeners, setNodeRef, transform, transition } =
+    useSortable({ id });
+
+  const style = { transform: CSS.Transform.toString(transform), transition };
+
   return (
-    <ListItemWrapper>
+    <ListItemWrapper
+      ref={setNodeRef}
+      style={style}
+      {...attributes}
+      {...listeners}
+    >
       <Label completed={item.completed} htmlFor={item.id}>
         <Checkbox item={item} toggleCheckbox={toggleCheckbox} />
         {item.text}

@@ -7,7 +7,7 @@ const HeaderWrapper = styled.header`
 
   @media (min-width: 23.5rem) {
     padding-top: 4.375rem;
-  }  
+  }
 `;
 
 const BrandTitle = styled.h1`
@@ -39,11 +39,13 @@ interface HeaderProps {
 
 const Header = ({ switchTheme }: HeaderProps) => {
   const theme = useTheme();
-  console.log(theme);
   return (
     <HeaderWrapper>
       <BrandTitle>ToDo</BrandTitle>
-      <ButtonWrapper onClick={switchTheme}>{theme.darkModeIcon}</ButtonWrapper>
+      {/* FIXME: improve accessiblity of darkmode switch */}
+      <ButtonWrapper aria-hidden="true" onClick={switchTheme}>
+        {theme.darkModeIcon}
+      </ButtonWrapper>
     </HeaderWrapper>
   );
 };
