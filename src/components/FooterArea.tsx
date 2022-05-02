@@ -1,5 +1,6 @@
 import { IListItem } from '../interfaces';
 import styled from 'styled-components';
+import FilterButton, { ButtonStyle } from './FilterButton';
 
 interface FooterAreaProps {
   items: IListItem[];
@@ -21,7 +22,7 @@ const List = styled.ul`
 
   @media (min-width: 23.5rem) {
     height: 4.0625rem;
-  }  
+  }
 `;
 
 const ItemsLeft = styled.li`
@@ -45,32 +46,7 @@ const Filters = styled.li`
   }
 `;
 
-const FilterButton = styled.button`
-  background: none;
-  border: 0;
-  padding: 0;
-  margin: 0 0.5625rem;
-  font-size: 0.75rem;
-  line-height: 0.75rem;
-  font-weight: 700;
-  letter-spacing: -0.194444px;
-  color: ${({ disabled }) => (disabled ? '#3A7CFD' : '#9495A5')};
-  ${({ disabled }) =>
-    disabled
-      ? ''
-      : `&:hover {
-          text-decoration: underline;
-          color: #494c6b;
-          cursor: pointer;
-        }`}
-
-  @media (min-width: 23.5rem) {
-    font-size: 0.875rem;
-    line-height: 0.875rem;
-  }
-`;
-
-const ClearButton = styled(FilterButton)`
+const ClearButton = styled(ButtonStyle)`
   font-weight: 400;
   color: ${({ theme }) => theme.placeholderColor};
   margin-right: 1.5625rem;
@@ -88,7 +64,6 @@ const FooterArea = ({
   removeCompleted,
   filterHooks,
 }: FooterAreaProps) => {
-  const [filter, setFilter] = filterHooks;
   const activeItems = (): string => {
     const numItems = items.filter((item) => !item.completed).length;
     return (numItems === 1 ? '1 item' : `${numItems} items`) + ' left';
@@ -99,24 +74,9 @@ const FooterArea = ({
       <List>
         <ItemsLeft>{activeItems()}</ItemsLeft>
         <Filters>
-          <FilterButton
-            disabled={filter === 'all'}
-            onClick={() => setFilter('all')}
-          >
-            All
-          </FilterButton>
-          <FilterButton
-            disabled={filter === 'active'}
-            onClick={() => setFilter('active')}
-          >
-            Active
-          </FilterButton>
-          <FilterButton
-            disabled={filter === 'completed'}
-            onClick={() => setFilter('completed')}
-          >
-            Completed
-          </FilterButton>
+          <FilterButton text="All" filterHooks={filterHooks} />
+          <FilterButton text="Active" filterHooks={filterHooks} />
+          <FilterButton text="Completed" filterHooks={filterHooks} />
         </Filters>
         <li>
           <ClearButton onClick={removeCompleted}>Clear Completed</ClearButton>
