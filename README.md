@@ -4,7 +4,7 @@
 
 - TypeScript
 - Custom Hooks
-- Styled Components including how to refer to other components and the Theme Provider for dark mode, using CSS to resize SVGs
+- Styled Components including how to refer to other components and the Theme Provider for dark mode, using CSS to resize SVGs, CSS Variables
 - Accessibility centered around checkboxes and form behaviors
 - SVGs
 - Drag and Drop via @dnd-kit/sortable, extending event sensors to ignore default behavior using an HTML attribute
@@ -18,9 +18,11 @@
 
 Styled Components: Dark Mode
 
-- https://www.smashingmagazine.com/2020/04/dark-mode-react-apps-styled-components/
-- https://javascript.plainenglish.io/implementing-the-dark-mode-using-react-and-styled-components-518d2edf1dd2
+- [Implementing Dark Mode In React Apps Using styled-components](https://www.smashingmagazine.com/2020/04/dark-mode-react-apps-styled-components/)
+- [Implementing The Dark Mode Using React and Styled Components](https://javascript.plainenglish.io/implementing-the-dark-mode-using-react-and-styled-components-518d2edf1dd2)
 
 CSS Variables and React
 
-- https://www.joshwcomeau.com/css/css-variables-for-react-devs/
+- [CSS Variables for React Devs](https://www.joshwcomeau.com/css/css-variables-for-react-devs/)
+- [Theming styled-components with CSS custom properties](https://daily.dev/blog/theming-styled-components-with-css-custom-properties)
+- [Want CSS variables in media query declarations? Try this!](https://bholmes.dev/blog/alternative-to-css-variable-media-queries/)

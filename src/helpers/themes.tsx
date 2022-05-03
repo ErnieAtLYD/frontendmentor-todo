@@ -37,8 +37,25 @@ export const lightTheme: DefaultTheme = {
 };
 
 export const GlobalStyles = createGlobalStyle`
-  body {
+  :root {
+    --breakpoint-desktop: 23.5rem;
+
+    --bg-color: ${(props) => props.theme.bgColor};
+    --bg-desktop: ${(props) => props.theme.bgDesktop};
+    --bg-mobile:${(props) => props.theme.bgMobile};
+    --list-item-bg-color: ${(props) => props.theme.listItemBgColor};
+    --list-item-border-color: ${(props) => props.theme.listItemBorderColor};
+    --list-item-color: ${(props) => props.theme.listItemColor};
+    --strike-thru-color: ${(props) => props.theme.strikeThruColor};
+    --placeholder-color: ${(props) => props.theme.placeholderColor};
+    --delete-icon-color: ${(props) => props.theme.deleteIconColor};
+    --list-shadow: ${(props) => props.theme.listShadow};
+  }
+  html {
     font-family: 'Josefin Sans', sans-serif;
-    background-color:${({ theme }) => theme.bgColor};
+  }
+
+  body {
+    background-color: var(--bg-color);
   }
 `;

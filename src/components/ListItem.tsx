@@ -7,8 +7,6 @@ import Checkbox from './Checkbox';
 import DeleteIcon from './DeleteIcon';
 import ListItemWrapper from './ListItemWrapper';
 
-let strikeThruColor: string;
-
 interface ListItemProps {
   id: string;
   item: IListItem;
@@ -18,10 +16,7 @@ interface ListItemProps {
 
 // prettier-ignore
 const Label = styled.label<{ completed: boolean }>`
-  color: ${({ theme }) => {
-    strikeThruColor = theme.strikeThruColor;
-    return theme.listItemColor
-  }};
+  color: var(--list-item-color);
   font-size: 0.75rem;
   font-weight: 400;
   line-height: 0.75rem;
@@ -30,17 +25,16 @@ const Label = styled.label<{ completed: boolean }>`
   flex-grow: 1;
 
   ${({ completed }) =>
-    completed &&
-    `
+    completed && `
     text-decoration: line-through;
-    color: ${strikeThruColor}};
+    color: var(--strike-thru-color);
   `}
 
   @media (min-width: 23.5rem) {
     font-size: 1.125rem;
     line-height: 1.125rem;
     letter-spacing: -0.25px;
-    margin-left: 1.5rem;    
+    margin-left: 1.5rem;
   }
 `;
 

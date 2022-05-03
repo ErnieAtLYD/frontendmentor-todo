@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import Header from './components/Header';
 import FormSection from './components/FormSection';
 import styled, { ThemeProvider } from 'styled-components';
@@ -7,12 +7,12 @@ import { useTodoList } from './hooks/useTodoList';
 import ListSection from './components/ListSection';
 
 const BodyWrapper = styled.div`
-  background-image: ${({ theme }) => theme.bgMobile};
+  background-image: var(--bg-mobile);
   background-repeat: no-repeat;
   background-position: top center;
 
   @media (min-width: 23.5rem) {
-    background-image: ${({ theme }) => theme.bgDesktop};
+    background-image: var(--bg-desktop);
   }
 `;
 

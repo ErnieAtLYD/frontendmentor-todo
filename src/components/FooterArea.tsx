@@ -9,31 +9,31 @@ interface FooterAreaProps {
 }
 
 const List = styled.ul`
-  display: flex;
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  vertical-align: middle;
-  justify-content: space-between;
   align-items: center;
-  height: 3.125rem;
+  background-color: var(--list-item-bg-color);
   border-radius: 0 0 5px 5px;
-  background-color: ${({ theme }) => theme.listItemBgColor};
+  display: flex;
+  height: 3.125rem;
+  justify-content: space-between;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  vertical-align: middle;
 
-  @media (min-width: 23.5rem) {
+  @media (min-width: var(--breakpoint-desktop)) {
     height: 4.0625rem;
   }
 `;
 
 const ItemsLeft = styled.li`
   display: inline-block;
-  color: ${({ theme }) => theme.placeholderColor};
+  color: var(--placeholder-color);
   font-size: 0.75rem;
   line-height: 0.75rem;
   letter-spacing: -0.194444px;
   margin-left: 1.5625rem;
 
-  @media (min-width: 23.5rem) {
+  @media (min-width: var(--breakpoint-desktop)) {
     font-size: 0.875rem;
     line-height: 0.875rem;
   }
@@ -41,17 +41,17 @@ const ItemsLeft = styled.li`
 
 const Filters = styled.li`
   display: none;
-  @media (min-width: 23.5rem) {
+  @media (min-width: var(--breakpoint-desktop)) {
     display: block;
   }
 `;
 
 const ClearButton = styled(ButtonStyle)`
-  font-weight: 400;
-  color: ${({ theme }) => theme.placeholderColor};
-  margin-right: 1.5625rem;
+  color: var(--placeholder-color);
   font-size: 0.75rem;
+  font-weight: 400;
   line-height: 0.75rem;
+  margin-right: 1.5625rem;
 
   @media (min-width: 23.5rem) {
     font-size: 0.875rem;
@@ -74,9 +74,9 @@ const FooterArea = ({
       <List>
         <ItemsLeft>{activeItems()}</ItemsLeft>
         <Filters>
-          <FilterButton text="All" filterHooks={filterHooks} />
-          <FilterButton text="Active" filterHooks={filterHooks} />
-          <FilterButton text="Completed" filterHooks={filterHooks} />
+          <FilterButton text='All' filterHooks={filterHooks} />
+          <FilterButton text='Active' filterHooks={filterHooks} />
+          <FilterButton text='Completed' filterHooks={filterHooks} />
         </Filters>
         <li>
           <ClearButton onClick={removeCompleted}>Clear Completed</ClearButton>

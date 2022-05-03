@@ -18,12 +18,12 @@ const HiddenButton = styled.button.attrs({ type: 'submit' })`
 
 const Form = styled.form`
   border-radius: 5px;
-  box-shadow: 0px 35px 50px -15px rgba(194, 195, 214, 0.5);
+  box-shadow: 0px 35px 50px -15px var(--list-shadow);
   height: 3rem;
   margin-bottom: 1rem;
 
   &:before {
-    border: 2px solid ${({ theme }) => theme.listItemBorderColor};
+    border: 2px solid var(--list-item-border-color);
     border-radius: 50%;
     content: '';
     height: 1.25rem;
@@ -53,10 +53,10 @@ const TextBox = styled.input.attrs({
   placeholder: 'Create a new todo...',
   name: 'todo',
 })`
-  background-color: ${({ theme }) => theme.listItemBgColor};
+  background-color: var(--list-item-bg-color);
   border: 0;
   border-radius: 5px;
-  color: ${({ theme }) => theme.listItemColor};
+  color: var(--list-item-color);
   font-size: 0.75rem;
   height: 100%;
   line-height: 0.75rem;
@@ -94,7 +94,7 @@ function FormSection({ addItem }: IFormSectionProps) {
   return (
     <Form onSubmit={handleSubmit}>
       <TextBoxWrapper>
-        <TextBox name="todo" value={todoBox} onChange={handleChange} />
+        <TextBox name='todo' value={todoBox} onChange={handleChange} />
       </TextBoxWrapper>
       <HiddenButton>Add</HiddenButton>
     </Form>

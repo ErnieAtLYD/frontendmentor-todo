@@ -43,7 +43,7 @@ const Header = ({ switchTheme }: HeaderProps) => {
     <HeaderWrapper>
       <BrandTitle>ToDo</BrandTitle>
       {/* FIXME: improve accessiblity of darkmode switch */}
-      <ButtonWrapper aria-hidden="true" onClick={switchTheme}>
+      <ButtonWrapper aria-hidden='true' onClick={switchTheme}>
         {theme.darkModeIcon}
       </ButtonWrapper>
     </HeaderWrapper>
