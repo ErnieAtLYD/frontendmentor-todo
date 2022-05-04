@@ -1,20 +1,12 @@
 import { useState } from 'react';
 import styled from 'styled-components';
+import Hidden from './Hidden';
 
 interface IFormSectionProps {
   addItem: (todo: string) => void;
 }
 
-const HiddenButton = styled.button.attrs({ type: 'submit' })`
-  clip: rect(0 0 0 0);
-  clip-path: inset(50%);
-  height: 1px;
-  overflow: hidden;
-  padding: 0;
-  position: absolute;
-  white-space: nowrap;
-  width: 1px;
-`;
+const HiddenButton = styled(Hidden)``;
 
 const Form = styled.form`
   border-radius: 5px;
@@ -66,7 +58,7 @@ const TextBox = styled.input.attrs({
   width: calc(99% - 4rem);
 
   ::-webkit-input-placeholder {
-    color: #9495a5;
+    color: var(--placeholder-color);
   }
 
   @media (min-width: 23.5rem) {
@@ -94,9 +86,9 @@ function FormSection({ addItem }: IFormSectionProps) {
   return (
     <Form onSubmit={handleSubmit}>
       <TextBoxWrapper>
-        <TextBox name='todo' value={todoBox} onChange={handleChange} />
+        <TextBox name="todo" value={todoBox} onChange={handleChange} />
       </TextBoxWrapper>
-      <HiddenButton>Add</HiddenButton>
+      <HiddenButton type="submit">Add</HiddenButton>
     </Form>
   );
 }
