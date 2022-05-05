@@ -26,7 +26,7 @@ const ContainerWrapper = styled.main`
 `;
 
 const FootnoteWrapper = styled.footer`
-  color: ${({ theme }) => theme.deleteIconColor};
+  color: var(--delete-icon-color);
   font-weight: 400;
   font-size: 0.875rem;
   line-height: 0.875rem;

@@ -1,5 +1,4 @@
-import ListItem from './ListItem';
-import { IListItem } from '../interfaces';
+import React from 'react';
 import {
   DndContext,
   closestCenter,
@@ -14,7 +13,11 @@ import {
   sortableKeyboardCoordinates,
   verticalListSortingStrategy,
 } from '@dnd-kit/sortable';
-import React from 'react';
+import styled from 'styled-components';
+import ListItem from './ListItem';
+import ListItemWrapper from './ListItemWrapper';
+import { IListItem } from '../interfaces';
+// import ToDoDnDContext from './ToDoDnDContext';
 
 interface IListProps {
   filter: string;
@@ -23,6 +26,15 @@ interface IListProps {
   toggleCheckbox: (id: string) => void;
   deleteItem: (id: string) => void;
 }
+
+const ListWrapper = styled.ul`
+  padding: 0;
+  margin: 0;
+
+  ${ListItemWrapper}:first-child {
+    border-radius: 5px 5px 0 0;
+  }
+`;
 
 const List = ({
   items,
@@ -48,6 +60,7 @@ const List = ({
   );
 
   const handleDragEnd = (event: DragEndEvent) => {
+    console.log('handleDragEnd', event);
     const { active, over } = event;
     if (active.id !== (over && over.id)) {
       setItems((items) => {
@@ -55,13 +68,15 @@ const List = ({
         const newIndex = items.findIndex(
           (item) => item.id === (over && over.id)
         );
+        console.log(oldIndex, newIndex);
         return arrayMove(items, oldIndex, newIndex);
       });
     }
   };
 
   return (
-    <ul style={{ padding: 0, margin: 0 }}>
+    <ListWrapper>
+      {/* <ToDoDnDContext items={items} setItems={setItems}> */}
       <DndContext
         sensors={sensors}
         collisionDetection={closestCenter}
@@ -79,7 +94,8 @@ const List = ({
           ))}
         </SortableContext>
       </DndContext>
-    </ul>
+      {/* </ToDoDnDContext> */}
+    </ListWrapper>
   );
 };
 

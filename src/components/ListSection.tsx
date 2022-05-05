@@ -1,8 +1,9 @@
 import { useState } from 'react';
+import styled from 'styled-components';
 import List from './List';
 import FooterArea from './FooterArea';
+import FilterButton from './FilterButton';
 import { IListItem } from '../interfaces';
-import styled from 'styled-components';
 
 interface ListSectionProps {
   items: IListItem[];
@@ -13,8 +14,22 @@ interface ListSectionProps {
 }
 
 const ListSectionWrapper = styled.article`
-  box-shadow: 0px 35px 50px -15px var(--list-shadow);
+  box-shadow: var(--list-shadow);
   border-radius: 5px;
+`;
+
+const MobileListSectionWrapper = styled(ListSectionWrapper)`
+  background-color: #fff;
+  font-size: 14px;
+  margin-top: 1rem;
+  height: 3rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  @media (min-width: 23.5rem) {
+    display: none;
+  }
 `;
 
 const ListSection = ({
@@ -26,20 +41,27 @@ const ListSection = ({
 }: ListSectionProps) => {
   const [filter, setFilter] = useState('all');
   return (
-    <ListSectionWrapper>
-      <List
-        filter={filter}
-        items={items}
-        setItems={setItems}
-        toggleCheckbox={toggleCheckbox}
-        deleteItem={deleteItem}
-      />
-      <FooterArea
-        items={items}
-        removeCompleted={removeCompleted}
-        filterHooks={[filter, setFilter]}
-      />
-    </ListSectionWrapper>
+    <>
+      <ListSectionWrapper>
+        <List
+          filter={filter}
+          items={items}
+          setItems={setItems}
+          toggleCheckbox={toggleCheckbox}
+          deleteItem={deleteItem}
+        />
+        <FooterArea
+          items={items}
+          removeCompleted={removeCompleted}
+          filterHooks={[filter, setFilter]}
+        />
+      </ListSectionWrapper>
+      {/* <MobileListSectionWrapper>
+        <FilterButton text='All' filterHooks={[filter, setFilter]} />
+        <FilterButton text='Active' filterHooks={[filter, setFilter]} />
+        <FilterButton text='Completed' filterHooks={[filter, setFilter]} />
+      </MobileListSectionWrapper> */}
+    </>
   );
 };
 

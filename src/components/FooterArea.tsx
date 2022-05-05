@@ -20,7 +20,7 @@ const List = styled.ul`
   padding: 0;
   vertical-align: middle;
 
-  @media (min-width: var(--breakpoint-desktop)) {
+  @media (min-width: 23.5rem) {
     height: 4.0625rem;
   }
 `;
@@ -33,7 +33,7 @@ const ItemsLeft = styled.li`
   letter-spacing: -0.194444px;
   margin-left: 1.5625rem;
 
-  @media (min-width: var(--breakpoint-desktop)) {
+  @media (min-width: 23.5rem) {
     font-size: 0.875rem;
     line-height: 0.875rem;
   }
@@ -41,7 +41,7 @@ const ItemsLeft = styled.li`
 
 const Filters = styled.li`
   display: none;
-  @media (min-width: var(--breakpoint-desktop)) {
+  @media (min-width: 23.5rem) {
     display: block;
   }
 `;

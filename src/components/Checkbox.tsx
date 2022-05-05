@@ -27,9 +27,9 @@ const CheckboxSVG = styled.svg<{ active: boolean }>`
   width: 1.25rem;
 
   ${({ active }) =>
-    active && `
+    active &&`
     border: 2px transparent double;
-    background: linear-gradient(135deg, hsl(192, 100%, 67%), hsl(280, 87%, 65%));
+    background: var( --checkbox-gradient);
     background-origin: border-box;
   `}
 

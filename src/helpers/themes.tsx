@@ -19,7 +19,7 @@ export const darkTheme: DefaultTheme = {
   strikeThruColor: '#4D5067',
   placeholderColor: '#767992',
   deleteIconColor: '#5B5E7E',
-  listShadow: 'rgba(0, 0, 0, 0.5)',
+  listShadow: '0px 35px 50px -15px rgba(0, 0, 0, 0.5)',
 };
 
 export const lightTheme: DefaultTheme = {
@@ -33,12 +33,13 @@ export const lightTheme: DefaultTheme = {
   strikeThruColor: '#d1d2da',
   placeholderColor: '#9495a5',
   deleteIconColor: '#9495a5',
-  listShadow: 'rgba(194, 195, 214, 0.5)',
+  listShadow: '0px 35px 50px -15px rgba(194, 195, 214, 0.5)',
 };
 
 export const GlobalStyles = createGlobalStyle`
   :root {
-    --breakpoint-desktop: 23.5rem;
+    --breakpoint-desktop: 23.5rem; /* not used */
+    --checkbox-gradient: linear-gradient(135deg, hsl(192, 100%, 67%), hsl(280, 87%, 65%));
 
     --bg-color: ${(props) => props.theme.bgColor};
     --bg-desktop: ${(props) => props.theme.bgDesktop};

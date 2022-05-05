@@ -10,7 +10,7 @@ const HiddenButton = styled(Hidden)``;
 
 const Form = styled.form`
   border-radius: 5px;
-  box-shadow: 0px 35px 50px -15px var(--list-shadow);
+  box-shadow: var(--list-shadow);
   height: 3rem;
   margin-bottom: 1rem;
 

@@ -14,15 +14,15 @@ export const ButtonStyle = styled.button`
   line-height: 0.75rem;
   font-weight: 700;
   letter-spacing: -0.194444px;
-  color: ${({ disabled }) => (disabled ? '#3A7CFD' : '#9495A5')};
+  color: ${({ disabled }) =>
+    disabled ? '#3A7CFD' : `var(--placeholder-color)`};
   ${({ disabled }) =>
-    disabled
-      ? ''
-      : `&:hover {
-         text-decoration: underline;
-         color: #494c6b;
-         cursor: pointer;
-       }`}
+    !disabled &&
+    `&:hover {
+      text-decoration: underline;
+      color: var(--list-item-color);
+      cursor: pointer;
+    }`}
 
   @media (min-width: 23.5rem) {
     font-size: 0.875rem;
