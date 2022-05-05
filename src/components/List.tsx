@@ -1,23 +1,9 @@
-import React from 'react';
-import {
-  DndContext,
-  closestCenter,
-  useSensor,
-  useSensors,
-  DragEndEvent,
-} from '@dnd-kit/core';
-import { KeyboardSensor, PointerSensor } from '../helpers/dnd';
-import {
-  arrayMove,
-  SortableContext,
-  sortableKeyboardCoordinates,
-  verticalListSortingStrategy,
-} from '@dnd-kit/sortable';
+import React, { useMemo } from 'react';
 import styled from 'styled-components';
 import ListItem from './ListItem';
 import ListItemWrapper from './ListItemWrapper';
 import { IListItem } from '../interfaces';
-// import ToDoDnDContext from './ToDoDnDContext';
+import TodoContext from '../contexts/TodoContext';
 
 interface IListProps {
   filter: string;
@@ -52,49 +38,22 @@ const List = ({
     return true;
   });
 
-  const sensors = useSensors(
-    useSensor(PointerSensor),
-    useSensor(KeyboardSensor, {
-      coordinateGetter: sortableKeyboardCoordinates,
-    })
-  );
-
-  const handleDragEnd = (event: DragEndEvent) => {
-    console.log('handleDragEnd', event);
-    const { active, over } = event;
-    if (active.id !== (over && over.id)) {
-      setItems((items) => {
-        const oldIndex = items.findIndex((item) => item.id === active.id);
-        const newIndex = items.findIndex(
-          (item) => item.id === (over && over.id)
-        );
-        console.log(oldIndex, newIndex);
-        return arrayMove(items, oldIndex, newIndex);
-      });
-    }
-  };
+  const itemIds = useMemo(() => items.map((item) => item.id), [items]);
+  console.log(itemIds);
 
   return (
     <ListWrapper>
-      {/* <ToDoDnDContext items={items} setItems={setItems}> */}
-      <DndContext
-        sensors={sensors}
-        collisionDetection={closestCenter}
-        onDragEnd={handleDragEnd}
-      >
-        <SortableContext items={items} strategy={verticalListSortingStrategy}>
-          {filteredItems.map((item) => (
-            <ListItem
-              key={item.id}
-              id={item.id}
-              item={item}
-              toggleCheckbox={toggleCheckbox}
-              deleteItem={deleteItem}
-            />
-          ))}
-        </SortableContext>
-      </DndContext>
-      {/* </ToDoDnDContext> */}
+      <TodoContext items={items} setItems={setItems}>
+        {filteredItems.map((item) => (
+          <ListItem
+            key={item.id}
+            id={item.id}
+            item={item}
+            toggleCheckbox={toggleCheckbox}
+            deleteItem={deleteItem}
+          />
+        ))}
+      </TodoContext>
     </ListWrapper>
   );
 };

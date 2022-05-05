@@ -19,7 +19,7 @@ const ListSectionWrapper = styled.article`
 `;
 
 const MobileListSectionWrapper = styled(ListSectionWrapper)`
-  background-color: #fff;
+  background-color: var(--list-item-bg-color);
   font-size: 14px;
   margin-top: 1rem;
   height: 3rem;
@@ -56,11 +56,11 @@ const ListSection = ({
           filterHooks={[filter, setFilter]}
         />
       </ListSectionWrapper>
-      {/* <MobileListSectionWrapper>
+      <MobileListSectionWrapper>
         <FilterButton text='All' filterHooks={[filter, setFilter]} />
         <FilterButton text='Active' filterHooks={[filter, setFilter]} />
         <FilterButton text='Completed' filterHooks={[filter, setFilter]} />
-      </MobileListSectionWrapper> */}
+      </MobileListSectionWrapper>
     </>
   );
 };
