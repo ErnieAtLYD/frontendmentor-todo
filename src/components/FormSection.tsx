@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { BodyText } from './atoms/typography';
 import { useForm } from '../hooks/useForm';
 import Hidden from './Hidden';
 
@@ -40,31 +41,18 @@ const TextBoxWrapper = styled.div`
   border-radius: 5px;
 `;
 
-const TextBox = styled.input.attrs({
-  type: 'text',
-  placeholder: 'Create a new todo...',
-  name: 'todo',
-})`
+const TextBox = styled(BodyText)`
   background-color: var(--list-item-bg-color);
   border: 0;
   border-radius: 5px;
   color: var(--list-item-color);
-  font-size: 0.75rem;
   height: 100%;
-  line-height: 0.75rem;
-  letter-spacing: -0.17px;
   padding: 0;
   padding-left: 4.375rem;
   width: calc(99% - 4rem);
 
   ::-webkit-input-placeholder {
     color: var(--placeholder-color);
-  }
-
-  @media (min-width: 23.5rem) {
-    font-size: 1.125rem;
-    line-height: 1.125rem;
-    letter-spacing: -0.25px;
   }
 `;
 
@@ -74,7 +62,14 @@ function FormSection({ addItem }: IFormSectionProps) {
   return (
     <Form onSubmit={handleSubmit}>
       <TextBoxWrapper>
-        <TextBox name="todo" value={todoBox} onChange={handleChange} />
+        <TextBox
+          as="input"
+          type="text"
+          name="todo"
+          placeholder="Create a new todo..."
+          value={todoBox}
+          onChange={handleChange}
+        />
       </TextBoxWrapper>
       <HiddenButton type="submit">Add</HiddenButton>
     </Form>

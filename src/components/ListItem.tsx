@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { BodyText } from './atoms/typography';
 import { useSortable } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
 
@@ -15,12 +16,8 @@ interface ListItemProps {
 }
 
 // prettier-ignore
-const Label = styled.label<{ completed: boolean }>`
+const Label = styled(BodyText)<{ completed: boolean }>`
   color: var(--list-item-color);
-  font-size: 0.75rem;
-  font-weight: 400;
-  line-height: 0.75rem;
-  letter-spacing: -0.17px;
   margin-left: 1.25rem;
   flex-grow: 1;
 
@@ -31,9 +28,6 @@ const Label = styled.label<{ completed: boolean }>`
   `}
 
   @media (min-width: 23.5rem) {
-    font-size: 1.125rem;
-    line-height: 1.125rem;
-    letter-spacing: -0.25px;
     margin-left: 1.5rem;
   }
 `;
@@ -51,7 +45,7 @@ function ListItem({ id, item, toggleCheckbox, deleteItem }: ListItemProps) {
       {...attributes}
       {...listeners}
     >
-      <Label completed={item.completed} htmlFor={item.id}>
+      <Label as="label" completed={item.completed} htmlFor={item.id}>
         <Checkbox item={item} toggleCheckbox={toggleCheckbox} />
         {item.text}
       </Label>

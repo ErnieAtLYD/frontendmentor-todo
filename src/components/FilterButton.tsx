@@ -1,32 +1,27 @@
 import styled from 'styled-components';
+import { FooterText } from './atoms/typography';
 
 interface FilterButtonProps {
   text: string;
   filterHooks: [string, React.Dispatch<React.SetStateAction<string>>];
 }
 
-export const ButtonStyle = styled.button`
+export const ButtonStyle = styled(FooterText)`
   background: none;
   border: 0;
+  color: var(--placeholder-color);
+  cursor: pointer;
   padding: 0;
   margin: 0 0.5625rem;
-  font-size: 0.75rem;
-  line-height: 0.75rem;
-  font-weight: 700;
-  letter-spacing: -0.194444px;
-  color: ${({ disabled }) =>
-    disabled ? '#3A7CFD' : `var(--placeholder-color)`};
-  ${({ disabled }) =>
-    !disabled &&
-    `&:hover {
-      text-decoration: underline;
-      color: var(--list-item-color);
-      cursor: pointer;
-    }`}
 
-  @media (min-width: 23.5rem) {
-    font-size: 0.875rem;
-    line-height: 0.875rem;
+  &:disabled,
+  &[disabled] {
+    color: #3a7cfd;
+  }
+
+  &:hover {
+    text-decoration: underline;
+    color: var(--list-item-color);
   }
 `;
 
@@ -35,8 +30,10 @@ const FilterButton = ({ text, filterHooks }: FilterButtonProps) => {
   const [filter, setFilter] = filterHooks;
   return (
     <ButtonStyle
+      as="button"
       disabled={filter === lowerCaseText}
       onClick={() => setFilter(lowerCaseText)}
+      style={{ fontSize: '0.875rem' }}
     >
       {text}
     </ButtonStyle>

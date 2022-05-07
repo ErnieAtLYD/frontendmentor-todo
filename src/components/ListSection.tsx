@@ -20,7 +20,7 @@ const ListSectionWrapper = styled.article`
 
 const MobileListSectionWrapper = styled(ListSectionWrapper)`
   background-color: var(--list-item-bg-color);
-  font-size: 14px;
+  font-size: 0.875rem;
   margin-top: 1rem;
   height: 3rem;
   display: flex;
@@ -57,9 +57,9 @@ const ListSection = ({
         />
       </ListSectionWrapper>
       <MobileListSectionWrapper>
-        <FilterButton text='All' filterHooks={[filter, setFilter]} />
-        <FilterButton text='Active' filterHooks={[filter, setFilter]} />
-        <FilterButton text='Completed' filterHooks={[filter, setFilter]} />
+        <FilterButton text="All" filterHooks={[filter, setFilter]} />
+        <FilterButton text="Active" filterHooks={[filter, setFilter]} />
+        <FilterButton text="Completed" filterHooks={[filter, setFilter]} />
       </MobileListSectionWrapper>
     </>
   );

@@ -1,5 +1,6 @@
 import { IListItem } from '../interfaces';
 import styled from 'styled-components';
+import { FooterText } from './atoms/typography';
 import FilterButton, { ButtonStyle } from './FilterButton';
 
 interface FooterAreaProps {
@@ -25,18 +26,10 @@ const List = styled.ul`
   }
 `;
 
-const ItemsLeft = styled.li`
-  display: inline-block;
+const ItemsLeft = styled(FooterText)`
   color: var(--placeholder-color);
-  font-size: 0.75rem;
-  line-height: 0.75rem;
-  letter-spacing: -0.194444px;
+  display: inline-block;
   margin-left: 1.5625rem;
-
-  @media (min-width: 23.5rem) {
-    font-size: 0.875rem;
-    line-height: 0.875rem;
-  }
 `;
 
 const Filters = styled.li`
@@ -47,16 +40,7 @@ const Filters = styled.li`
 `;
 
 const ClearButton = styled(ButtonStyle)`
-  color: var(--placeholder-color);
-  font-size: 0.75rem;
-  font-weight: 400;
-  line-height: 0.75rem;
   margin-right: 1.5625rem;
-
-  @media (min-width: 23.5rem) {
-    font-size: 0.875rem;
-    line-height: 0.875rem;
-  }
 `;
 
 const FooterArea = ({
@@ -72,14 +56,16 @@ const FooterArea = ({
   return (
     <footer>
       <List>
-        <ItemsLeft>{activeItems()}</ItemsLeft>
+        <ItemsLeft as="li">{activeItems()}</ItemsLeft>
         <Filters>
-          <FilterButton text='All' filterHooks={filterHooks} />
-          <FilterButton text='Active' filterHooks={filterHooks} />
-          <FilterButton text='Completed' filterHooks={filterHooks} />
+          <FilterButton text="All" filterHooks={filterHooks} />
+          <FilterButton text="Active" filterHooks={filterHooks} />
+          <FilterButton text="Completed" filterHooks={filterHooks} />
         </Filters>
         <li>
-          <ClearButton onClick={removeCompleted}>Clear Completed</ClearButton>
+          <ClearButton as="button" onClick={removeCompleted}>
+            Clear Completed
+          </ClearButton>
         </li>
       </List>
     </footer>

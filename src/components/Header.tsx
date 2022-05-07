@@ -1,4 +1,5 @@
 import styled, { useTheme } from 'styled-components';
+import { HeaderText } from './atoms/typography';
 
 const HeaderWrapper = styled.header`
   display: flex;
@@ -10,19 +11,9 @@ const HeaderWrapper = styled.header`
   }
 `;
 
-const BrandTitle = styled.h1`
-  font-size: 2rem;
-  line-height: 2rem;
-  text-transform: uppercase;
-  font-weight: 700;
-  letter-spacing: 0.75rem;
+const BrandTitle = styled(HeaderText)`
   color: #fff;
-
-  @media (min-width: 23.5rem) {
-    font-size: 2.5rem;
-    line-height: 2.5rem;
-    letter-spacing: 0.9375rem;
-  }
+  text-transform: uppercase;
 `;
 
 const ButtonWrapper = styled.button`
@@ -43,7 +34,7 @@ const Header = ({ switchTheme }: HeaderProps) => {
     <HeaderWrapper>
       <BrandTitle>ToDo</BrandTitle>
       {/* FIXME: improve accessiblity of darkmode switch */}
-      <ButtonWrapper aria-hidden='true' onClick={switchTheme}>
+      <ButtonWrapper aria-hidden="true" onClick={switchTheme}>
         {theme.darkModeIcon}
       </ButtonWrapper>
     </HeaderWrapper>
