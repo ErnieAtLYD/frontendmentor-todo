@@ -10,6 +10,9 @@ const ListItemWrapper = styled.li`
   background-color: var(--list-item-bg-color);
   border-bottom: 1px solid var(--list-item-border-color);
 
+  // Needed to make it draggable on mobile
+  touch-action: none;
+
   @media (min-width: 23.5rem) {
     height: 4.0625rem;
   }
