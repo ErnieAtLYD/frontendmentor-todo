@@ -38,9 +38,6 @@ const List = ({
     return true;
   });
 
-  const itemIds = useMemo(() => items.map((item) => item.id), [items]);
-  console.log(itemIds);
-
   return (
     <ListWrapper>
       <TodoContext items={items} setItems={setItems}>
