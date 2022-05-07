@@ -1,5 +1,5 @@
-import { useState } from 'react';
 import styled from 'styled-components';
+import { useForm } from '../hooks/useForm';
 import Hidden from './Hidden';
 
 interface IFormSectionProps {
@@ -69,19 +69,7 @@ const TextBox = styled.input.attrs({
 `;
 
 function FormSection({ addItem }: IFormSectionProps) {
-  const [todoBox, setTodoBox] = useState<string>('');
-
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    if (todoBox.trim()) {
-      addItem(todoBox);
-      setTodoBox('');
-    }
-  };
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setTodoBox(e.target.value);
-  };
+  const { todoBox, handleChange, handleSubmit } = useForm(addItem);
 
   return (
     <Form onSubmit={handleSubmit}>
