@@ -33,10 +33,7 @@ const Header = ({ switchTheme }: HeaderProps) => {
   return (
     <HeaderWrapper>
       <BrandTitle>ToDo</BrandTitle>
-      {/* FIXME: improve accessiblity of darkmode switch */}
-      <ButtonWrapper aria-hidden="true" onClick={switchTheme}>
-        {theme.darkModeIcon}
-      </ButtonWrapper>
+      <ButtonWrapper onClick={switchTheme}>{theme.darkModeIcon}</ButtonWrapper>
     </HeaderWrapper>
   );
 };
