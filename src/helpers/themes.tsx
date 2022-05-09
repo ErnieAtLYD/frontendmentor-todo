@@ -38,8 +38,9 @@ export const lightTheme: DefaultTheme = {
 
 export const GlobalStyles = createGlobalStyle`
   :root {
-    --breakpoint-desktop: 23.5rem; /* not used */
+    --breakpoint-desktop: 23.5rem; /* not used as a CSS variable */
     --checkbox-gradient: linear-gradient(135deg, hsl(192, 100%, 67%), hsl(280, 87%, 65%));
+    --footer-active-color: #3a7cfd;
 
     --bg-color: ${(props) => props.theme.bgColor};
     --bg-desktop: ${(props) => props.theme.bgDesktop};

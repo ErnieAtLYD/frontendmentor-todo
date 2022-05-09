@@ -11,12 +11,13 @@ export const ButtonStyle = styled(FooterText)`
   border: 0;
   color: var(--placeholder-color);
   cursor: pointer;
+  font-size: 0.875rem;
   padding: 0;
   margin: 0 0.5625rem;
 
   &:disabled,
   &[disabled] {
-    color: #3a7cfd;
+    color: var(--footer-active-color);
   }
 
   &:hover {
@@ -33,7 +34,6 @@ const FilterButton = ({ text, filterHooks }: FilterButtonProps) => {
       as="button"
       disabled={filter === lowerCaseText}
       onClick={() => setFilter(lowerCaseText)}
-      style={{ fontSize: '0.875rem' }}
     >
       {text}
     </ButtonStyle>
