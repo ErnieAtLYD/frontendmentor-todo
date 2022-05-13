@@ -1,17 +1,8 @@
-import React, { useMemo } from 'react';
 import styled from 'styled-components';
 import ListItem from './ListItem';
 import ListItemWrapper from './ListItemWrapper';
-import { IListItem } from '../interfaces';
+import { IListItem, IStateDispatch } from '../interfaces';
 import TodoContext from '../contexts/TodoContext';
-
-interface IListProps {
-  filter: string;
-  items: IListItem[];
-  setItems: React.Dispatch<React.SetStateAction<IListItem[]>>;
-  toggleCheckbox: (id: string) => void;
-  deleteItem: (id: string) => void;
-}
 
 const ListWrapper = styled.ul`
   padding: 0;
@@ -22,17 +13,11 @@ const ListWrapper = styled.ul`
   }
 `;
 
-const List = ({
-  items,
-  setItems,
-  filter,
-  toggleCheckbox,
-  deleteItem,
-}: IListProps) => {
-  const filteredItems = items.filter((item: IListItem): boolean => {
-    if (filter === 'active') {
+const List = ({ state, dispatch }: IStateDispatch) => {
+  const filteredItems = state.todos.filter((item: IListItem): boolean => {
+    if (state.visibilityFilter === 'SHOW_ACTIVE') {
       return item.completed === false;
-    } else if (filter === 'completed') {
+    } else if (state.visibilityFilter === 'SHOW_COMPLETED') {
       return item.completed === true;
     }
     return true;
@@ -40,14 +25,13 @@ const List = ({
 
   return (
     <ListWrapper>
-      <TodoContext items={items} setItems={setItems}>
+      <TodoContext state={state} dispatch={dispatch}>
         {filteredItems.map((item) => (
           <ListItem
+            dispatch={dispatch}
             key={item.id}
             id={item.id}
             item={item}
-            toggleCheckbox={toggleCheckbox}
-            deleteItem={deleteItem}
           />
         ))}
       </TodoContext>

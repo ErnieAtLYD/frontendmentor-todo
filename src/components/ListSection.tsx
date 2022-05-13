@@ -1,17 +1,8 @@
-import { useState } from 'react';
 import styled from 'styled-components';
 import List from './List';
 import FooterArea from './FooterArea';
 import FilterButton from './FilterButton';
-import { IListItem } from '../interfaces';
-
-interface ListSectionProps {
-  items: IListItem[];
-  setItems: React.Dispatch<React.SetStateAction<IListItem[]>>;
-  toggleCheckbox: (id: string) => void;
-  deleteItem: (id: string) => void;
-  removeCompleted: () => void;
-}
+import { IStateDispatch } from '../interfaces';
 
 const ListSectionWrapper = styled.article`
   box-shadow: var(--list-shadow);
@@ -32,34 +23,29 @@ const MobileListSectionWrapper = styled(ListSectionWrapper)`
   }
 `;
 
-const ListSection = ({
-  items,
-  setItems,
-  toggleCheckbox,
-  deleteItem,
-  removeCompleted,
-}: ListSectionProps) => {
-  const [filter, setFilter] = useState('all');
+const ListSection = ({ state, dispatch }: IStateDispatch) => {
   return (
     <>
       <ListSectionWrapper>
-        <List
-          filter={filter}
-          items={items}
-          setItems={setItems}
-          toggleCheckbox={toggleCheckbox}
-          deleteItem={deleteItem}
-        />
-        <FooterArea
-          items={items}
-          removeCompleted={removeCompleted}
-          filterHooks={[filter, setFilter]}
-        />
+        <List state={state} dispatch={dispatch} />
+        <FooterArea state={state} dispatch={dispatch} />
       </ListSectionWrapper>
       <MobileListSectionWrapper>
-        <FilterButton text="All" filterHooks={[filter, setFilter]} />
-        <FilterButton text="Active" filterHooks={[filter, setFilter]} />
-        <FilterButton text="Completed" filterHooks={[filter, setFilter]} />
+        <FilterButton
+          dispatch={dispatch}
+          currentFilter={state.visibilityFilter}
+          text='All'
+        />
+        <FilterButton
+          dispatch={dispatch}
+          currentFilter={state.visibilityFilter}
+          text='Active'
+        />
+        <FilterButton
+          dispatch={dispatch}
+          currentFilter={state.visibilityFilter}
+          text='Completed'
+        />
       </MobileListSectionWrapper>
     </>
   );

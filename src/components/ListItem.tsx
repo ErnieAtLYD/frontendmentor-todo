@@ -7,12 +7,12 @@ import { IListItem } from '../interfaces/';
 import Checkbox from './Checkbox';
 import DeleteIcon from './DeleteIcon';
 import ListItemWrapper from './ListItemWrapper';
+import { ActionProps } from '../interfaces';
 
 interface ListItemProps {
+  dispatch: React.Dispatch<ActionProps>;
   id: string;
   item: IListItem;
-  toggleCheckbox: (id: string) => void;
-  deleteItem: (id: string) => void;
 }
 
 // prettier-ignore
@@ -32,7 +32,7 @@ const Label = styled(BodyText)<{ completed: boolean }>`
   }
 `;
 
-function ListItem({ id, item, toggleCheckbox, deleteItem }: ListItemProps) {
+function ListItem({ dispatch, id, item }: ListItemProps) {
   const { attributes, listeners, setNodeRef, transform, transition } =
     useSortable({ id });
 
@@ -45,11 +45,18 @@ function ListItem({ id, item, toggleCheckbox, deleteItem }: ListItemProps) {
       {...attributes}
       {...listeners}
     >
-      <Label as="label" completed={item.completed} htmlFor={item.id}>
-        <Checkbox item={item} toggleCheckbox={toggleCheckbox} />
+      <Label as='label' completed={item.completed} htmlFor={item.id}>
+        <Checkbox
+          item={item}
+          toggleCheckbox={() => {
+            dispatch({ type: 'TOGGLE_TODO', payload: item.id });
+          }}
+        />
         {item.text}
       </Label>
-      <DeleteIcon handleClick={() => deleteItem(item.id)} />
+      <DeleteIcon
+        handleClick={() => dispatch({ type: 'REMOVE_TODO', payload: item.id })}
+      />
     </ListItemWrapper>
   );
 }

@@ -1,10 +1,11 @@
-import { useState } from 'react';
+import { useState, useReducer } from 'react';
 import Header from './components/Header';
 import FormSection from './components/FormSection';
 import styled, { ThemeProvider } from 'styled-components';
 import { darkTheme, lightTheme, GlobalStyles } from './helpers/themes';
-import { useTodoList } from './hooks/useTodoList';
 import ListSection from './components/ListSection';
+import { todoReducer } from './reducers';
+import { IListItem } from './interfaces';
 
 const BodyWrapper = styled.div`
   background-image: var(--bg-mobile);
@@ -42,15 +43,13 @@ function App() {
     theme === 'light' ? setTheme('dark') : setTheme('light');
   };
 
-  // custom hooks
-  const {
-    items,
-    addItem,
-    deleteItem,
-    removeCompleted,
-    toggleCheckbox,
-    setItems,
-  } = useTodoList();
+  const initialState = {
+    todos: [] as IListItem[],
+    visibilityFilter: 'SHOW_ALL',
+  };
+
+  // now with a reducer!
+  const [state, dispatch] = useReducer(todoReducer, initialState);
 
   return (
     <ThemeProvider theme={theme === 'light' ? lightTheme : darkTheme}>
@@ -58,14 +57,8 @@ function App() {
       <BodyWrapper>
         <ContainerWrapper>
           <Header switchTheme={switchTheme} />
-          <FormSection addItem={addItem} />
-          <ListSection
-            items={items}
-            setItems={setItems}
-            deleteItem={deleteItem}
-            toggleCheckbox={toggleCheckbox}
-            removeCompleted={removeCompleted}
-          />
+          <FormSection dispatch={dispatch} />
+          <ListSection state={state} dispatch={dispatch} />
           <FootnoteWrapper>Drag and drop to reorder list</FootnoteWrapper>
         </ContainerWrapper>
       </BodyWrapper>

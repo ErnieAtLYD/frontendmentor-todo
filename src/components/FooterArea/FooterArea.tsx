@@ -1,34 +1,41 @@
-import { IListItem } from '../../interfaces';
 import FilterButton from '../FilterButton';
 import { List, ItemsLeft, Filters, ClearButton } from './styles';
+import { IStateDispatch } from '../../interfaces';
 
-interface FooterAreaProps {
-  items: IListItem[];
-  removeCompleted: () => void;
-  filterHooks: [string, React.Dispatch<React.SetStateAction<string>>];
-}
-
-const FooterArea = ({
-  items,
-  removeCompleted,
-  filterHooks,
-}: FooterAreaProps) => {
+const FooterArea = ({ state, dispatch }: IStateDispatch) => {
   const activeItems = (): string => {
-    const numItems = items.filter((item) => !item.completed).length;
+    const numItems = state.todos.filter((item) => !item.completed).length;
     return (numItems === 1 ? '1 item' : `${numItems} items`) + ' left';
   };
 
   return (
     <footer>
       <List>
-        <ItemsLeft as="li">{activeItems()}</ItemsLeft>
+        <ItemsLeft as='li'>{activeItems()}</ItemsLeft>
         <Filters>
-          <FilterButton text="All" filterHooks={filterHooks} />
-          <FilterButton text="Active" filterHooks={filterHooks} />
-          <FilterButton text="Completed" filterHooks={filterHooks} />
+          <FilterButton
+            text='All'
+            dispatch={dispatch}
+            currentFilter={state.visibilityFilter}
+          />
+          <FilterButton
+            text='Active'
+            dispatch={dispatch}
+            currentFilter={state.visibilityFilter}
+          />
+          <FilterButton
+            text='Completed'
+            dispatch={dispatch}
+            currentFilter={state.visibilityFilter}
+          />
         </Filters>
         <li>
-          <ClearButton as="button" onClick={removeCompleted}>
+          <ClearButton
+            as='button'
+            onClick={() => {
+              dispatch({ type: 'REMOVE_COMPLETED', payload: '' });
+            }}
+          >
             Clear Completed
           </ClearButton>
         </li>

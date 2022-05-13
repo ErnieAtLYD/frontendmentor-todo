@@ -1,9 +1,11 @@
 import styled from 'styled-components';
 import { FooterText } from './atoms/typography';
+import { ActionProps } from '../interfaces';
 
 interface FilterButtonProps {
+  dispatch: React.Dispatch<ActionProps>;
   text: string;
-  filterHooks: [string, React.Dispatch<React.SetStateAction<string>>];
+  currentFilter: string;
 }
 
 export const ButtonStyle = styled(FooterText)`
@@ -26,14 +28,21 @@ export const ButtonStyle = styled(FooterText)`
   }
 `;
 
-const FilterButton = ({ text, filterHooks }: FilterButtonProps) => {
-  const lowerCaseText = text.toLowerCase();
-  const [filter, setFilter] = filterHooks;
+const FilterButton = ({ dispatch, text, currentFilter }: FilterButtonProps) => {
+  // FIXME: use enums
+  const FILTER: Record<string, string> = {
+    All: 'SHOW_ALL',
+    Active: 'SHOW_ACTIVE',
+    Completed: 'SHOW_COMPLETED',
+  };
+
   return (
     <ButtonStyle
-      as="button"
-      disabled={filter === lowerCaseText}
-      onClick={() => setFilter(lowerCaseText)}
+      as='button'
+      disabled={FILTER[text] === currentFilter}
+      onClick={() =>
+        dispatch({ type: 'SET_VISIBILITY_FILTER', payload: FILTER[text] })
+      }
     >
       {text}
     </ButtonStyle>

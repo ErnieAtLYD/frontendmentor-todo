@@ -1,10 +1,12 @@
-import { useMemo } from 'react';
+import React, { useMemo } from 'react';
 import {
   DndContext,
   DragEndEvent,
   closestCenter,
   useSensor,
   useSensors,
+  Active,
+  Over,
 } from '@dnd-kit/core';
 import { KeyboardSensor, PointerSensor } from '../helpers/dnd';
 import {
@@ -14,16 +16,13 @@ import {
   verticalListSortingStrategy,
 } from '@dnd-kit/sortable';
 import { IListItem } from '../interfaces';
+import { IStateDispatch } from '../interfaces';
 
-interface TodoContextProps {
-  items: IListItem[];
-  setItems: React.Dispatch<React.SetStateAction<IListItem[]>>;
-  children: React.ReactNode;
-}
+type TodoContextProps = IStateDispatch & { children: React.ReactNode };
 
 export const TodoContext = ({
-  items,
-  setItems,
+  state,
+  dispatch,
   children,
 }: TodoContextProps) => {
   const sensors = useSensors(
@@ -33,19 +32,27 @@ export const TodoContext = ({
     })
   );
 
+  const reorderHandler = (
+    items: IListItem[],
+    active: Active,
+    over: Over | null
+  ) => {
+    const oldIndex = items.findIndex((item) => item.id === active.id);
+    const newIndex = items.findIndex((item) => item.id === (over && over.id));
+    return arrayMove(items, oldIndex, newIndex);
+  };
+
   const handleDragEnd = (event: DragEndEvent) => {
     const { active, over } = event;
     if (active.id !== (over && over.id)) {
-      setItems((items) => {
-        const oldIndex = items.findIndex((item) => item.id === active.id);
-        const newIndex = items.findIndex(
-          (item) => item.id === (over && over.id)
-        );
-        return arrayMove(items, oldIndex, newIndex);
-      });
+      const newItems = reorderHandler(state.todos, active, over);
+      dispatch({ type: 'SET_TODOS', payload: newItems });
     }
   };
-  const itemIds = useMemo(() => items.map((item) => item.id), [items]);
+  const itemIds = useMemo(
+    () => state.todos.map((item) => item.id),
+    [state.todos]
+  );
 
   return (
     <DndContext
