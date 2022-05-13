@@ -1,4 +1,3 @@
-import React = require('react');
 import {IListItem} from '../../interfaces';
 import {HiddenCheckbox, CheckboxSVG, Wrapper} from './styles';
 

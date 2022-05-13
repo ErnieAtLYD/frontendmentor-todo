@@ -1,4 +1,3 @@
-import React = require('react');
 import {useForm} from '../../hooks/useForm';
 import {Form, HiddenButton, TextBox, TextBoxWrapper} from './styles';
 import {ActionProps} from '../../interfaces';

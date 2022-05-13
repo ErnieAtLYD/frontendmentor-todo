@@ -1,4 +1,3 @@
-import React = require('react');
 import FilterButton from '../FilterButton';
 import {List, ItemsLeft, Filters, ClearButton} from './styles';
 import {IStateDispatch} from '../../interfaces';
