@@ -18,6 +18,7 @@ const Checkbox = ({item, toggleCheckbox}: CheckboxProps) => {
         onChange={() => {
           toggleCheckbox(item.id);
         }}
+        checked={!!item.completed}
       />
       <CheckboxSVG
         active={item.completed}
