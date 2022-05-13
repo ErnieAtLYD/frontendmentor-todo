@@ -13,7 +13,6 @@ export class MouseSensor extends LibMouseSensor {
     {
       eventName: 'onMouseDown' as const,
       handler: ({nativeEvent: event}: MouseEvent) => {
-        console.log('mouse here?', event.target);
         return shouldHandleEvent(event.target as HTMLElement);
       },
     },
