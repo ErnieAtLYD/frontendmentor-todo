@@ -1,13 +1,14 @@
 import styled from 'styled-components';
-import { BodyText } from './atoms/typography';
-import { useSortable } from '@dnd-kit/sortable';
-import { CSS } from '@dnd-kit/utilities';
+import {BodyText} from './atoms/typography';
+import {useSortable} from '@dnd-kit/sortable';
+// eslint-disable-next-line node/no-extraneous-import
+import {CSS} from '@dnd-kit/utilities';
 
-import { IListItem } from '../interfaces/';
+import {IListItem} from '../interfaces/';
 import Checkbox from './Checkbox';
 import DeleteIcon from './DeleteIcon';
 import ListItemWrapper from './ListItemWrapper';
-import { ActionProps } from '../interfaces';
+import {ActionProps} from '../interfaces';
 
 interface ListItemProps {
   dispatch: React.Dispatch<ActionProps>;
@@ -32,11 +33,11 @@ const Label = styled(BodyText)<{ completed: boolean }>`
   }
 `;
 
-function ListItem({ dispatch, id, item }: ListItemProps) {
-  const { attributes, listeners, setNodeRef, transform, transition } =
-    useSortable({ id });
+function ListItem({dispatch, id, item}: ListItemProps) {
+  const {attributes, listeners, setNodeRef, transform, transition} =
+    useSortable({id});
 
-  const style = { transform: CSS.Transform.toString(transform), transition };
+  const style = {transform: CSS.Transform.toString(transform), transition};
 
   return (
     <ListItemWrapper
@@ -45,17 +46,17 @@ function ListItem({ dispatch, id, item }: ListItemProps) {
       {...attributes}
       {...listeners}
     >
-      <Label as='label' completed={item.completed} htmlFor={item.id}>
+      <Label as="label" completed={item.completed} htmlFor={item.id}>
         <Checkbox
           item={item}
           toggleCheckbox={() => {
-            dispatch({ type: 'TOGGLE_TODO', payload: item.id });
+            dispatch({type: 'TOGGLE_TODO', payload: item.id});
           }}
         />
         {item.text}
       </Label>
       <DeleteIcon
-        handleClick={() => dispatch({ type: 'REMOVE_TODO', payload: item.id })}
+        handleClick={() => dispatch({type: 'REMOVE_TODO', payload: item.id})}
       />
     </ListItemWrapper>
   );

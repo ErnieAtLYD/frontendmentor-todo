@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import Hidden from '../Hidden';
 
-export const Wrapper = styled.div.attrs({ 'data-no-dnd': true })`
+export const Wrapper = styled.div.attrs({'data-no-dnd': true})`
   display: inline-block;
   vertical-align: middle;
 `;

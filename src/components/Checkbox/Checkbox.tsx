@@ -1,5 +1,6 @@
-import { IListItem } from '../../interfaces';
-import { HiddenCheckbox, CheckboxSVG, Wrapper } from './styles';
+import React = require('react');
+import {IListItem} from '../../interfaces';
+import {HiddenCheckbox, CheckboxSVG, Wrapper} from './styles';
 
 // https://www.evinced.com/blog/creating-accessible-styled-checkboxes/
 
@@ -8,7 +9,7 @@ interface CheckboxProps {
   toggleCheckbox: (id: string) => void;
 }
 
-const Checkbox = ({ item, toggleCheckbox }: CheckboxProps) => {
+const Checkbox = ({item, toggleCheckbox}: CheckboxProps) => {
   return (
     <Wrapper>
       <HiddenCheckbox

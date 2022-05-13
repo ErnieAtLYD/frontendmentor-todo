@@ -1,6 +1,6 @@
 import styled from 'styled-components';
-import { FooterText } from './atoms/typography';
-import { ActionProps } from '../interfaces';
+import {FooterText} from './atoms/typography';
+import {ActionProps} from '../interfaces';
 
 interface FilterButtonProps {
   dispatch: React.Dispatch<ActionProps>;
@@ -28,7 +28,7 @@ export const ButtonStyle = styled(FooterText)`
   }
 `;
 
-const FilterButton = ({ dispatch, text, currentFilter }: FilterButtonProps) => {
+const FilterButton = ({dispatch, text, currentFilter}: FilterButtonProps) => {
   // FIXME: use enums
   const FILTER: Record<string, string> = {
     All: 'SHOW_ALL',
@@ -38,10 +38,10 @@ const FilterButton = ({ dispatch, text, currentFilter }: FilterButtonProps) => {
 
   return (
     <ButtonStyle
-      as='button'
+      as="button"
       disabled={FILTER[text] === currentFilter}
       onClick={() =>
-        dispatch({ type: 'SET_VISIBILITY_FILTER', payload: FILTER[text] })
+        dispatch({type: 'SET_VISIBILITY_FILTER', payload: FILTER[text]})
       }
     >
       {text}

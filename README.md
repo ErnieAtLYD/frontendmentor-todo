@@ -45,11 +45,13 @@ Users should be able to:
 
 ### Built with
 
+[![Code Style: Google](https://img.shields.io/badge/code%20style-google-blueviolet.svg)](https://github.com/google/gts)
+
 - Semantic HTML5 markup including a11y
 - CSS custom properties and flexbox
 - Mobile-first workflow including Figma comps
 - [React](https://reactjs.org/) - JS library
-  - TypeScript
+  - TypeScript, using gts
   - Custom Hooks
   - [Styled Components](https://styled-components.com/)
   - [@dnd-kit/sortable](https://docs.dndkit.com/presets/sortable)

@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { BodyText } from '../atoms/typography';
+import {BodyText} from '../atoms/typography';
 import Hidden from '../Hidden';
 
 export const HiddenButton = styled(Hidden)``;

@@ -1,5 +1,5 @@
-import { v4 as uuid } from 'uuid';
-import { StateProps, ActionProps } from '../interfaces/';
+import {v4 as uuid} from 'uuid';
+import {StateProps, ActionProps} from '../interfaces/';
 
 // https://www.telerik.com/kendo-react-ui/react-hooks-guide/
 
@@ -16,27 +16,27 @@ export const todoReducer = (
         ...state,
         todos: [
           ...state.todos,
-          { text: action.payload, id: uuid(), completed: false },
+          {text: action.payload, id: uuid(), completed: false},
         ],
       };
     case 'TOGGLE_TODO':
       return {
         ...state,
-        todos: state.todos.map((todo) =>
+        todos: state.todos.map(todo =>
           todo.id === action.payload
-            ? { ...todo, completed: !todo.completed }
+            ? {...todo, completed: !todo.completed}
             : todo
         ),
       };
     case 'REMOVE_TODO':
       return {
         ...state,
-        todos: state.todos.filter((todo) => todo.id !== action.payload),
+        todos: state.todos.filter(todo => todo.id !== action.payload),
       };
     case 'REMOVE_COMPLETED':
       return {
         ...state,
-        todos: state.todos.filter((todo) => !todo.completed),
+        todos: state.todos.filter(todo => !todo.completed),
       };
     case 'SET_VISIBILITY_FILTER':
       if (typeof action.payload !== 'string') {

@@ -1,11 +1,11 @@
-import { useState, useReducer } from 'react';
+import {useState, useReducer} from 'react';
 import Header from './components/Header';
 import FormSection from './components/FormSection';
-import styled, { ThemeProvider } from 'styled-components';
-import { darkTheme, lightTheme, GlobalStyles } from './helpers/themes';
+import styled, {ThemeProvider} from 'styled-components';
+import {darkTheme, lightTheme, GlobalStyles} from './helpers/themes';
 import ListSection from './components/ListSection';
-import { todoReducer } from './reducers';
-import { IListItem } from './interfaces';
+import {todoReducer} from './reducers';
+import {IListItem} from './interfaces';
 
 const BodyWrapper = styled.div`
   background-image: var(--bg-mobile);

@@ -1,10 +1,10 @@
-import { createGlobalStyle, DefaultTheme } from 'styled-components';
-import bgDesktopLight from '../images/bg-desktop-light.jpg';
+import {createGlobalStyle, DefaultTheme} from 'styled-components';
+import {ReactComponent as bgDesktopLight} from '../images/bg-desktop-light.jpg';
 import bgMobileLight from '../images/bg-mobile-light.jpg';
 import bgDesktopDark from '../images/bg-desktop-dark.jpg';
 import bgMobileDark from '../images/bg-mobile-dark.jpg';
-import { ReactComponent as IconMoon } from '../images/icon-moon.svg';
-import { ReactComponent as IconSun } from '../images/icon-sun.svg';
+import {ReactComponent as IconMoon} from '../images/icon-moon.svg';
+import {ReactComponent as IconSun} from '../images/icon-sun.svg';
 
 // see ./styled.d.ts
 
@@ -42,16 +42,16 @@ export const GlobalStyles = createGlobalStyle`
     --checkbox-gradient: linear-gradient(135deg, hsl(192, 100%, 67%), hsl(280, 87%, 65%));
     --footer-active-color: #3a7cfd;
 
-    --bg-color: ${(props) => props.theme.bgColor};
-    --bg-desktop: ${(props) => props.theme.bgDesktop};
-    --bg-mobile:${(props) => props.theme.bgMobile};
-    --list-item-bg-color: ${(props) => props.theme.listItemBgColor};
-    --list-item-border-color: ${(props) => props.theme.listItemBorderColor};
-    --list-item-color: ${(props) => props.theme.listItemColor};
-    --strike-thru-color: ${(props) => props.theme.strikeThruColor};
-    --placeholder-color: ${(props) => props.theme.placeholderColor};
-    --delete-icon-color: ${(props) => props.theme.deleteIconColor};
-    --list-shadow: ${(props) => props.theme.listShadow};
+    --bg-color: ${props => props.theme.bgColor};
+    --bg-desktop: ${props => props.theme.bgDesktop};
+    --bg-mobile:${props => props.theme.bgMobile};
+    --list-item-bg-color: ${props => props.theme.listItemBgColor};
+    --list-item-border-color: ${props => props.theme.listItemBorderColor};
+    --list-item-color: ${props => props.theme.listItemColor};
+    --strike-thru-color: ${props => props.theme.strikeThruColor};
+    --placeholder-color: ${props => props.theme.placeholderColor};
+    --delete-icon-color: ${props => props.theme.deleteIconColor};
+    --list-shadow: ${props => props.theme.listShadow};
   }
   html {
     font-family: 'Josefin Sans', sans-serif;

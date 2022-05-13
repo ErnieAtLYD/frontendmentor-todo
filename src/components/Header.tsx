@@ -1,5 +1,5 @@
-import styled, { useTheme } from 'styled-components';
-import { HeaderText } from './atoms/typography';
+import styled, {useTheme} from 'styled-components';
+import {HeaderText} from './atoms/typography';
 
 const HeaderWrapper = styled.header`
   display: flex;
@@ -28,7 +28,7 @@ interface HeaderProps {
   switchTheme: () => void;
 }
 
-const Header = ({ switchTheme }: HeaderProps) => {
+const Header = ({switchTheme}: HeaderProps) => {
   const theme = useTheme();
   return (
     <HeaderWrapper>

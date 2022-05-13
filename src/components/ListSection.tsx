@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import List from './List';
 import FooterArea from './FooterArea';
 import FilterButton from './FilterButton';
-import { IStateDispatch } from '../interfaces';
+import {IStateDispatch} from '../interfaces';
 
 const ListSectionWrapper = styled.article`
   box-shadow: var(--list-shadow);
@@ -23,7 +23,7 @@ const MobileListSectionWrapper = styled(ListSectionWrapper)`
   }
 `;
 
-const ListSection = ({ state, dispatch }: IStateDispatch) => {
+const ListSection = ({state, dispatch}: IStateDispatch) => {
   return (
     <>
       <ListSectionWrapper>
@@ -34,17 +34,17 @@ const ListSection = ({ state, dispatch }: IStateDispatch) => {
         <FilterButton
           dispatch={dispatch}
           currentFilter={state.visibilityFilter}
-          text='All'
+          text="All"
         />
         <FilterButton
           dispatch={dispatch}
           currentFilter={state.visibilityFilter}
-          text='Active'
+          text="Active"
         />
         <FilterButton
           dispatch={dispatch}
           currentFilter={state.visibilityFilter}
-          text='Completed'
+          text="Completed"
         />
       </MobileListSectionWrapper>
     </>

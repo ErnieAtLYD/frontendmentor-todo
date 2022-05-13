@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import { ActionProps } from '../interfaces';
+import {useState} from 'react';
+import {ActionProps} from '../interfaces';
 
 export const useForm = (dispatch: React.Dispatch<ActionProps>) => {
   const [todoBox, setTodoBox] = useState<string>('');
@@ -7,7 +7,7 @@ export const useForm = (dispatch: React.Dispatch<ActionProps>) => {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (todoBox.trim()) {
-      dispatch({ type: 'ADD_TODO', payload: todoBox });
+      dispatch({type: 'ADD_TODO', payload: todoBox});
       setTodoBox('');
     }
   };
@@ -16,5 +16,5 @@ export const useForm = (dispatch: React.Dispatch<ActionProps>) => {
     setTodoBox(e.target.value);
   };
 
-  return { todoBox, handleSubmit, handleChange };
+  return {todoBox, handleSubmit, handleChange};
 };
