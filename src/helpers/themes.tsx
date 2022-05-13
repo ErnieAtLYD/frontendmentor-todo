@@ -1,5 +1,5 @@
 import {createGlobalStyle, DefaultTheme} from 'styled-components';
-import {ReactComponent as bgDesktopLight} from '../images/bg-desktop-light.jpg';
+import bgDesktopLight from '../images/bg-desktop-light.jpg';
 import bgMobileLight from '../images/bg-mobile-light.jpg';
 import bgDesktopDark from '../images/bg-desktop-dark.jpg';
 import bgMobileDark from '../images/bg-mobile-dark.jpg';
