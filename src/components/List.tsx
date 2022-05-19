@@ -1,8 +1,10 @@
 import styled from 'styled-components';
 import ListItem from './ListItem';
 import ListItemWrapper from './ListItemWrapper';
-import {IListItem, IStateDispatch} from '../interfaces';
+import {IListItem} from '../interfaces';
 import TodoContext from '../contexts/TodoContext';
+import {useContext} from 'react';
+import {TodoAppContext} from '../contexts/TodoAppContext';
 
 const ListWrapper = styled.ul`
   padding: 0;
@@ -13,7 +15,8 @@ const ListWrapper = styled.ul`
   }
 `;
 
-const List = ({state, dispatch}: IStateDispatch) => {
+const List = () => {
+  const {state, dispatch} = useContext(TodoAppContext);
   const filteredItems = state.todos.filter((item: IListItem): boolean => {
     if (state.visibilityFilter === 'SHOW_ACTIVE') {
       return item.completed === false;
@@ -27,12 +30,7 @@ const List = ({state, dispatch}: IStateDispatch) => {
     <ListWrapper>
       <TodoContext state={state} dispatch={dispatch}>
         {filteredItems.map(item => (
-          <ListItem
-            dispatch={dispatch}
-            key={item.id}
-            id={item.id}
-            item={item}
-          />
+          <ListItem key={item.id} id={item.id} item={item} />
         ))}
       </TodoContext>
     </ListWrapper>

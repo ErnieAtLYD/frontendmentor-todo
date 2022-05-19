@@ -1,12 +1,10 @@
+import {useContext} from 'react';
 import {useForm} from '../../hooks/useForm';
 import {Form, HiddenButton, TextBox, TextBoxWrapper} from './styles';
-import {ActionProps} from '../../interfaces';
+import {TodoAppContext} from '../../contexts/TodoAppContext';
 
-interface IFormSectionProps {
-  dispatch: React.Dispatch<ActionProps>;
-}
-
-function FormSection({dispatch}: IFormSectionProps) {
+function FormSection() {
+  const {dispatch} = useContext(TodoAppContext);
   const {todoBox, handleChange, handleSubmit} = useForm(dispatch);
 
   return (
