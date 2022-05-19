@@ -1,10 +1,14 @@
 import FilterButton from '../FilterButton';
 import {List, ItemsLeft, Filters, ClearButton} from './styles';
-import {IStateDispatch} from '../../interfaces';
+import {useContext} from 'react';
+import {TodoAppContext} from '../../contexts/TodoAppContext';
 
-const FooterArea = ({state, dispatch}: IStateDispatch) => {
+const FooterArea = () => {
+  const {state, dispatch} = useContext(TodoAppContext);
+  const {visibilityFilter, todos} = state;
+
   const activeItems = (): string => {
-    const numItems = state.todos.filter(item => !item.completed).length;
+    const numItems = todos.filter(item => !item.completed).length;
     return (numItems === 1 ? '1 item' : `${numItems} items`) + ' left';
   };
 
@@ -13,21 +17,9 @@ const FooterArea = ({state, dispatch}: IStateDispatch) => {
       <List>
         <ItemsLeft as="li">{activeItems()}</ItemsLeft>
         <Filters>
-          <FilterButton
-            text="All"
-            dispatch={dispatch}
-            currentFilter={state.visibilityFilter}
-          />
-          <FilterButton
-            text="Active"
-            dispatch={dispatch}
-            currentFilter={state.visibilityFilter}
-          />
-          <FilterButton
-            text="Completed"
-            dispatch={dispatch}
-            currentFilter={state.visibilityFilter}
-          />
+          <FilterButton text="All" currentFilter={visibilityFilter} />
+          <FilterButton text="Active" currentFilter={visibilityFilter} />
+          <FilterButton text="Completed" currentFilter={visibilityFilter} />
         </Filters>
         <li>
           <ClearButton

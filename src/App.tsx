@@ -1,11 +1,12 @@
 import {useState, useReducer} from 'react';
+import styled, {ThemeProvider} from 'styled-components';
+import {initialState} from './interfaces';
+import {todoReducer} from './reducers';
+import {TodoAppContext} from './contexts/TodoAppContext';
+import {darkTheme, lightTheme, GlobalStyles} from './helpers/themes';
 import Header from './components/Header';
 import FormSection from './components/FormSection';
-import styled, {ThemeProvider} from 'styled-components';
-import {darkTheme, lightTheme, GlobalStyles} from './helpers/themes';
 import ListSection from './components/ListSection';
-import {todoReducer} from './reducers';
-import {IListItem} from './interfaces';
 
 const BodyWrapper = styled.div`
   background-image: var(--bg-mobile);
@@ -38,31 +39,26 @@ const FootnoteWrapper = styled.footer`
 
 function App() {
   const [theme, setTheme] = useState('light');
-
-  const switchTheme = () => {
-    theme === 'light' ? setTheme('dark') : setTheme('light');
-  };
-
-  const initialState = {
-    todos: [] as IListItem[],
-    visibilityFilter: 'SHOW_ALL',
-  };
-
-  // now with a reducer!
   const [state, dispatch] = useReducer(todoReducer, initialState);
 
+  const switchTheme = () => {
+    setTheme(theme === 'light' ? 'dark' : 'light');
+  };
+
   return (
-    <ThemeProvider theme={theme === 'light' ? lightTheme : darkTheme}>
-      <GlobalStyles />
-      <BodyWrapper>
-        <ContainerWrapper>
-          <Header switchTheme={switchTheme} />
-          <FormSection dispatch={dispatch} />
-          <ListSection state={state} dispatch={dispatch} />
-          <FootnoteWrapper>Drag and drop to reorder list</FootnoteWrapper>
-        </ContainerWrapper>
-      </BodyWrapper>
-    </ThemeProvider>
+    <TodoAppContext.Provider value={{state, dispatch}}>
+      <ThemeProvider theme={theme === 'light' ? lightTheme : darkTheme}>
+        <GlobalStyles />
+        <BodyWrapper>
+          <ContainerWrapper>
+            <Header switchTheme={switchTheme} />
+            <FormSection />
+            <ListSection />
+            <FootnoteWrapper>Drag and drop to reorder list</FootnoteWrapper>
+          </ContainerWrapper>
+        </BodyWrapper>
+      </ThemeProvider>
+    </TodoAppContext.Provider>
   );
 }
 

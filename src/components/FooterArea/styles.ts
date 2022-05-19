@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import {FooterText} from '../atoms/typography';
-import {ButtonStyle} from '../FilterButton';
+import {ButtonStyle} from '../FilterButton/styles';
 
 export const List = styled.ul`
   align-items: center;

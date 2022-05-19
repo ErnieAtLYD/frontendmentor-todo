@@ -1,7 +1,12 @@
 import {v4 as uuid} from 'uuid';
-import {StateProps, ActionProps} from '../interfaces/';
+import {StateProps, ActionProps, IListItem} from '../interfaces/';
 
 // https://www.telerik.com/kendo-react-ui/react-hooks-guide/
+
+export const initialState = {
+  todos: [] as IListItem[],
+  visibilityFilter: 'SHOW_ALL',
+};
 
 export const todoReducer = (
   state: StateProps,

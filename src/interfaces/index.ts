@@ -21,3 +21,8 @@ export interface IStateDispatch {
   state: StateProps;
   dispatch: Dispatch<ActionProps>;
 }
+
+export const initialState = {
+  todos: [] as IListItem[],
+  visibilityFilter: 'SHOW_ALL',
+};
